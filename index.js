@@ -13,6 +13,8 @@ app.get("/", (req, res) => {
 // Delete Item
 
 // USER functions
+// Register User
+// Login User
 
 app.listen(5000, () => {
   console.log("Listening on localhost port 5000");
