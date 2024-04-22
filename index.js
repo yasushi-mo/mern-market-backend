@@ -5,6 +5,15 @@ app.get("/", (req, res) => {
   return res.status(200).json("Hello World");
 });
 
+// ITEM functions
+// Create Item
+// Read All Items
+// Read single Item
+// Update Item
+// Delete Item
+
+// USER functions
+
 app.listen(5000, () => {
   console.log("Listening on localhost port 5000");
 });
