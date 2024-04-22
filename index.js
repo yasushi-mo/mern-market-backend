@@ -1,12 +1,20 @@
 const express = require("express");
 const app = express();
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.get("/", (req, res) => {
   return res.status(200).json("Hello World");
 });
 
 // ITEM functions
 // Create Item
+app.post("/item/create", (req, res) => {
+  console.log(req.body.title);
+  return res.status(200).json("Goodbye");
+});
+
 // Read All Items
 // Read single Item
 // Update Item
