@@ -1,1 +1,3 @@
-export const DB_CONNECTION_STRING = process.env.DB_CONNECTION_STRING;
+const DB_CONNECTION_STRING = process.env.DB_CONNECTION_STRING;
+
+module.exports = DB_CONNECTION_STRING;

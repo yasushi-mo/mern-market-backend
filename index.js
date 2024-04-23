@@ -1,8 +1,8 @@
-import express, { urlencoded, json } from "express";
+const express = require("express");
 const app = express();
 
-app.use(urlencoded({ extended: true }));
-app.use(json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get("/", (req, res) => {
   return res.status(200).json("Hello World");
