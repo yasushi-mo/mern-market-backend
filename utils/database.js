@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
-const { DB_CONNECTION_STRING } = require("./constants");
+import { connect } from "mongoose";
+import { DB_CONNECTION_STRING } from "./constants";
 
 const connectDB = () => {
   try {
-    mongoose.connect(DB_CONNECTION_STRING);
+    connect(DB_CONNECTION_STRING);
     console.log("Success: Connected to MongoDB");
   } catch (err) {
     console.log("Failure: Unconnected to MongoDB");
@@ -11,4 +11,4 @@ const connectDB = () => {
   }
 };
 
-module.exports = connectDB;
+export default connectDB;
