@@ -1,2 +1,1 @@
-export const MONGO_DB_CONNECTION_STRING =
-  process.env.MONGO_DB_CONNECTION_STRING;
+export const DB_CONNECTION_STRING = process.env.DB_CONNECTION_STRING;
