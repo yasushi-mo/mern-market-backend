@@ -8,3 +8,5 @@ const ItemSchema = new Schema({
   description: String,
   email: String,
 });
+
+exports.ItemModel = mongoose.model("Item", ItemSchema);
