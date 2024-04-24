@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
-const { DB_CONNECTION_STRING } = require("./constants");
 
-const connectDB = () => {
+const connectDB = async () => {
   try {
-    mongoose.connect(DB_CONNECTION_STRING);
+    await mongoose.connect("");
     console.log("Success: Connected to MongoDB");
   } catch (err) {
     console.log("Failure: Unconnected to MongoDB");
