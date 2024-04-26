@@ -59,8 +59,8 @@ app.put("/item/update/:id", async (req, res) => {
 app.delete("/item/delete/:id", async (req, res) => {
   try {
     await connectDB();
-    const r = await ItemModel.deleteOne({ _id: req.params.id });
-    return res.status(200).json({ message: "アイテム削除成功", r: r });
+    await ItemModel.deleteOne({ _id: req.params.id });
+    return res.status(200).json({ message: "アイテム削除成功" });
   } catch (error) {
     return res.status(400).json({ message: "アイテム削除失敗" });
   }
