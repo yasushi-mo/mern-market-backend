@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const connectDB = require("./utils/database");
-const { ItemModel } = require("./utils/schemaModels");
+const { ItemModel, UserModel } = require("./utils/schemaModels");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -68,6 +68,15 @@ app.delete("/item/delete/:id", async (req, res) => {
 
 // USER functions
 // Register User
+app.post("/user/register", async (req, res) => {
+  try {
+    await connectDB();
+    await UserModel.create(req.body);
+    return res.status(200).json({ message: "ユーザー登録成功" });
+  } catch (error) {
+    return res.status(400).json({ message: "ユーザー登録失敗" });
+  }
+});
 // Login User
 
 app.listen(5000, () => {
