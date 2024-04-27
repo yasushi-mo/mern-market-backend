@@ -78,6 +78,16 @@ app.post("/user/register", async (req, res) => {
   }
 });
 // Login User
+app.post("/user/login", async (req, res) => {
+  try {
+    await connectDB();
+    const savedUserData = await UserModel.findOne({ email: req.body.email });
+    console.log(savedUserData);
+    return res.status(200).json({ message: "ログイン成功" });
+  } catch (error) {
+    return res.status(400).json({ message: "ログイン失敗" });
+  }
+});
 
 app.listen(5000, () => {
   console.log("Listening on localhost port 5000");
