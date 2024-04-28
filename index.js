@@ -51,8 +51,13 @@ app.get("/item/:id", async (req, res) => {
 app.put("/item/update/:id", auth, async (req, res) => {
   try {
     await connectDB();
-    await ItemModel.updateOne({ _id: req.params.id }, req.body);
-    return res.status(200).json({ message: "アイテム編集成功" });
+    const singleItem = await ItemModel.findById(req.params.id);
+    if (singleItem.email === req.body.email) {
+      await ItemModel.updateOne({ _id: req.params.id }, req.body);
+      return res.status(200).json({ message: "アイテム編集成功" });
+    } else {
+      throw new Error();
+    }
   } catch (error) {
     return res.status(400).json({ message: "アイテム編集失敗" });
   }
@@ -61,8 +66,13 @@ app.put("/item/update/:id", auth, async (req, res) => {
 app.delete("/item/delete/:id", auth, async (req, res) => {
   try {
     await connectDB();
-    await ItemModel.deleteOne({ _id: req.params.id });
-    return res.status(200).json({ message: "アイテム削除成功" });
+    const singleItem = await ItemModel.findById(req.params.id);
+    if (singleItem.email === req.body.email) {
+      await ItemModel.deleteOne({ _id: req.params.id });
+      return res.status(200).json({ message: "アイテム削除成功" });
+    } else {
+      throw new Error();
+    }
   } catch (error) {
     return res.status(400).json({ message: "アイテム削除失敗" });
   }
