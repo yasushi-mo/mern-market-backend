@@ -1,8 +1,9 @@
 const express = require("express");
-const app = express();
+const jwt = require("jsonwebtoken");
 const connectDB = require("./utils/database");
 const { ItemModel, UserModel } = require("./utils/schemaModels");
 
+const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -78,13 +79,19 @@ app.post("/user/register", async (req, res) => {
   }
 });
 // Login User
+const secret_key = "mern-market";
+
 app.post("/user/login", async (req, res) => {
   try {
     await connectDB();
     const savedUserData = await UserModel.findOne({ email: req.body.email });
     if (savedUserData) {
       if (req.body.password === savedUserData.password) {
-        return res.status(200).json({ message: "ログイン成功" });
+        const payload = {
+          email: req.body.email,
+        };
+        const token = jwt.sign(payload, secret_key, { expiresIn: "23h" });
+        return res.status(200).json({ message: "ログイン成功", token: token });
       } else {
         return res
           .status(400)
