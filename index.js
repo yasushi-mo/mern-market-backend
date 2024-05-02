@@ -5,6 +5,9 @@ const connectDB = require("./utils/database");
 const { ItemModel, UserModel } = require("./utils/schemaModels");
 
 const app = express();
+const cors = require("cors");
+
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
