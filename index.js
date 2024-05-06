@@ -5,6 +5,9 @@ const connectDB = require("./utils/database");
 const { ItemModel, UserModel } = require("./utils/schemaModels");
 
 const app = express();
+const cors = require("cors");
+
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -118,6 +121,8 @@ app.post("/user/login", async (req, res) => {
   }
 });
 
+const port = process.env.PORT || 5000;
+
 app.listen(5000, () => {
-  console.log("Listening on localhost port 5000");
+  console.log(`Listening on localhost port ${port}`);
 });
